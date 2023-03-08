@@ -1,8 +1,4 @@
 <?php
-
-include 'Connection.php';
-
-
 $pdo = new PDO('mysql:dbname=aluraplay','vini','&9741*Pa875');
 
 $url = filter_input(INPUT_POST,'url', FILTER_VALIDATE_URL);

@@ -1,9 +1,9 @@
 <?php
 
-
+var_dump($_SERVER);
 $pdo = new PDO('mysql:dbname=aluraplay','vini','&9741*Pa875');
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-if ($id === false) {
+if ($id === false && $id === null) {
     header('Location: /?sucesso=0');
     exit();
 }
