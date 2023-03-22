@@ -2,11 +2,18 @@
 
 declare(strict_types=1);
 
+use Alura\Mvc\Controller\VideoListController;
+use Alura\Mvc\Repository\VideoRepository;
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
+$pdo = new PDO('mysql:dbname=aluraplay','vini','&9741*Pa875');
+$this->videoRepository = new VideoRepository($pdo);
+
 if (!array_key_exists('PATH_INFO', $_SERVER) || $_SERVER['PATH_INFO'] === '/') {
-    require_once __DIR__ . '/../listagem-videos.php';
-} elseif ($_SERVER['PATH_INFO'] === '/novo-video') {
+    $controller = new VideoListController(new VideoRepository($pdo));
+    $controller->processaRequisicao();
+    } elseif ($_SERVER['PATH_INFO'] === '/novo-video') {
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         require_once __DIR__ . '/../formulario.php';
     } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {

@@ -1,9 +1,4 @@
-<?php
-$pdo = new PDO('mysql:dbname=aluraplay','vini','&9741*Pa875');
-$repository = new Alura\Mvc\Repository\VideoRepository($pdo);
-$videoList = $repository->all();
-//var_dump($videoList);
-?>
+
 <?php require_once 'inicio-html.php'?>
 
     <ul class="videos__container" alt="videos alura">
