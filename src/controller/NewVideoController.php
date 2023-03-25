@@ -9,7 +9,7 @@ use Alura\Mvc\Repository\VideoRepository;
 
 namespace Alura\Mvc\Controller;
 
-class NewVideoController
+class NewVideoController implements Controller
 {
     public function __construct(private VideoRepository $videoRepository)
     {

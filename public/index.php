@@ -2,31 +2,38 @@
 
 declare(strict_types=1);
 
-use Alura\Mvc\Controller\VideoListController;
-use Alura\Mvc\Repository\VideoRepository;
+use Alura\Mvc\{Controller,
+    Controller\DeleteVideoController,
+    Controller\EditVideoController,
+    Controller\Error404Controller,
+    Controller\NewVideoController,
+    Controller\VideoFormController,
+    Controller\VideoListController,
+    Repository\VideoRepository};
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
 $pdo = new PDO('mysql:dbname=aluraplay','vini','&9741*Pa875');
-$this->videoRepository = new VideoRepository($pdo);
+$videoRepository = new VideoRepository($pdo);
 
 if (!array_key_exists('PATH_INFO', $_SERVER) || $_SERVER['PATH_INFO'] === '/') {
-    $controller = new VideoListController(new VideoRepository($pdo));
-    $controller->processaRequisicao();
-    } elseif ($_SERVER['PATH_INFO'] === '/novo-video') {
+    $controller = new VideoListController($videoRepository);
+} elseif ($_SERVER['PATH_INFO'] === '/novo-video') {
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        require_once __DIR__ . '/../formulario.php';
+        $controller = new VideoFormController($videoRepository);
     } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-       require_once __DIR__ . '/../novo-video.php';
+        $controller = new NewVideoController($videoRepository);
     }
 } elseif ($_SERVER['PATH_INFO'] === '/editar-video') {
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        require_once __DIR__ . '/../formulario.php';
+        $controller = new VideoFormController($videoRepository);
     } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        require_once __DIR__ . '/../editar-video.php';
+        $controller = new EditVideoController($videoRepository);
     }
 } elseif ($_SERVER['PATH_INFO'] === '/remover-video') {
-    require_once __DIR__ . '/../remover-video.php';
+    $controller = new DeleteVideoController($videoRepository);
 } else {
-    http_response_code(404);
+    $controller = new Error404Controller();
 }
+/** @var \Alura\Mvc\Controller $controller */
+$controller->processaRequisicao();
