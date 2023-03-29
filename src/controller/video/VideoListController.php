@@ -18,7 +18,7 @@ class VideoListController implements Controller
     {
         $videoList = $this->videoRepository->all();
 
-        require_once __DIR__. '/../../views/video-list.php';
+        require_once __DIR__ . '/../../../views/video-list.php';
     }
 
 }
