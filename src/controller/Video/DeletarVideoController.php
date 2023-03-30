@@ -1,12 +1,11 @@
 <?php
 
-declare(strict_types=1);
+namespace Alura\Mvc\Controller\Video;
 
-namespace Alura\Mvc\Controller;
-
+use Alura\Mvc\Controller\Controller;
 use Alura\Mvc\Repository\VideoRepository;
 
-class DeleteVideoController implements Controller
+class DeletarVideoController implements Controller
 {
     public function __construct(private VideoRepository $videoRepository)
     {
@@ -26,6 +25,5 @@ class DeleteVideoController implements Controller
         } else {
             header('Location: /?sucesso=1');
         }
-
     }
 }

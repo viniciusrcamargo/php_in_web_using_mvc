@@ -18,7 +18,7 @@ if ($id !== false && $id !== null) {
 
     <main class="container">
 
-        <form class="container__formulario" action="<?php $id === false ? '/novo-video' : '/editar-video?id=' . $id; ?>" method="post">
+        <form class="container__formulario" action="<?php $id === false ? '/novo-Video' : '/editar-Video?id=' . $id; ?>" method="post">
             <h3 class="formulario__titulo">Envie um vídeo!</h3>
                 <div class="formulario__campo">
                     <label class="campo__etiqueta" for="url">Link embed</label>

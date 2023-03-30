@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Alura\Mvc\Controller;
+namespace Alura\Mvc\Controller\Video;
 
 use Alura\Mvc\Repository\VideoRepository;
+use Alura\Mvc\Controller\Controller;
 use PDO;
 
 class VideoListController implements Controller
@@ -18,7 +19,7 @@ class VideoListController implements Controller
     {
         $videoList = $this->videoRepository->all();
 
-        require_once __DIR__ . '/../../../views/video-list.php';
+        require_once __DIR__ . '/../../../views/Video-list.php';
     }
 
 }
