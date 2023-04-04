@@ -9,7 +9,10 @@ use Alura\Mvc\Controller\Video\EditVideoController;
 use Alura\Mvc\Controller\Error404Controller;
 use Alura\Mvc\Controller\Video\NewVideoController;
 use Alura\Mvc\Controller\Video\VideoFormController;
+use Alura\Mvc\Controller\Author\AuthorListController;
+use Alura\Mvc\Controller\Author\NewAuthorController;
 use Alura\Mvc\Repository\VideoRepository;
+use Alura\Mvc\Repository\AuthorRepository;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
