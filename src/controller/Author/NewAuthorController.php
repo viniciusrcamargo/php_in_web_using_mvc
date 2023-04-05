@@ -19,7 +19,7 @@ class NewAuthorController implements Controller
             header('Location: /?sucesso=0');
             return;
         }
-
+        var_dump($nome);
         $success = $this->authorRepository->add(new Author($nome));
         if ($success === false) {
             header('Location: /?sucesso=0');

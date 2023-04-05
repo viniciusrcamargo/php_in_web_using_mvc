@@ -13,7 +13,7 @@ class AuthorRepository
 
     public function add(Author $author): bool
     {
-        $sql = 'INSERT INTO author (nome) VALUES (?)';
+        $sql = 'INSERT INTO authors (nome) VALUES (?)';
         $statement = $this->pdo->prepare($sql);
         $statement->bindValue(1,$author->nome);
 
@@ -26,7 +26,7 @@ class AuthorRepository
 
     public function remove(int $id): bool
     {
-        $sql = 'DELETE FROM author WHERE id = ?';
+        $sql = 'DELETE FROM authors WHERE id = ?';
         $statement = $this->pdo->prepare($sql);
         $statement->bindValue(1, $id);
         return $statement->execute();
@@ -35,9 +35,9 @@ class AuthorRepository
 
     public function update(Author $author): bool
     {
-        $sql = 'UPDATE videos SET nome = :nome WHERE id = :id;';
+        $sql = 'UPDATE authors SET nome = :nome WHERE id = :id;';
         $statement = $this->pdo->prepare($sql);
-        $statement->bindValue(':title', $author->title);
+        $statement->bindValue(':nome', $author->nome);
         $statement->bindValue(':id', $author->id, PDO::PARAM_INT);
         return $statement->execute();
     }
@@ -48,14 +48,14 @@ class AuthorRepository
     public function all(): array
     {
         $authorList = $this->pdo
-            ->query('SELECT * FROM author;')
+            ->query('SELECT * FROM authors;')
             ->fetchAll(PDO::FETCH_ASSOC);
 
         return array_map(
             function (array $authorData) {
-                $video = new Video($authorData['url'], $authorData['title']);
-                $video->setId($authorData['id']);
-                return $video;
+                $author = new Author($authorData['nome']);
+                $author->setId($authorData['id']);
+                return $author;
             },
             $authorList
         );
@@ -64,16 +64,16 @@ class AuthorRepository
 
     public function find(int $id)
     {
-        $statement = $this->pdo->prepare('SELECT * FROM author WHERE id = ?;');
+        $statement = $this->pdo->prepare('SELECT * FROM authors WHERE id = ?;');
         $statement->bindValue(1, $id, \PDO::PARAM_INT);
         $statement->execute();
 
         return $this->hydrateAuthor($statement->fetch(\PDO::FETCH_ASSOC));
     }
 
-    private function hydrateAuthor(array $authorData): Video
+    private function hydrateAuthor(array $authorData): Author
     {
-        $author = new Video($authorData['url'], $authorData['title']);
+        $author = new Author($authorData['nome']);
         $author->setId($authorData['id']);
 
         return $author;

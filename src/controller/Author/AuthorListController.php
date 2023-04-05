@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Alura\Mvc\Controller\Author;
 
-use Alura\Mvc\Controller\Controller;
 use Alura\Mvc\Repository\AuthorRepository;
+use Alura\Mvc\Controller\Controller;
+
 
 class AuthorListController implements Controller
 {

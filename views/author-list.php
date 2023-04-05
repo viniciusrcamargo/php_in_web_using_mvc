@@ -11,8 +11,8 @@ require_once __DIR__ . '/inicio-html.php';
                 <img src="public/img/logo.png" alt="logo canal alura">
                 <h3><?php echo $author->nome; ?></h3>
                 <div class="acoes-video">
-                    <a href="/editar-video?id=<?= $author->id; ?>">Editar</a>
-                    <a href="/remover-video?id=<?= $author->id; ?>">Excluir</a>
+                    <a href="/editar-author?id=<?= $author->id; ?>">Editar</a>
+                    <a href="/remover-author?id=<?= $author->id; ?>">Excluir</a>
                 </div>
             </div>
         </li>
